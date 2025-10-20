@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fiestas Privadas - LuxeVibe Events</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      background-color: white;
+      color: black;
+      margin-left: 200px; /* espacio para la barra lateral */
+    }
+
+    header {
+      background-color: black;
+      color: white;
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    header h1 {
+      font-size: 60px;
+    }
+
+    nav {
+      background-color: black;
+      width: 200px;
+      height: 100vh;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 20px;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+
+    nav ul li {
+      width: 100%;
+      margin: 10px 0;
+      text-align: center;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-size: 18px;
+      display: block;
+      padding: 10px;
+      transition: background-color 0.3s;
+    }
+
+    nav ul li a:hover {
+      background-color: gray;
+      border-radius: 5px;
+    }
+
+    section {
+      padding: 40px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    section h2 {
+      font-size: 28px;
+      margin-bottom: 15px;
+      color: gray;
+    }
+
+    p {
+      margin-bottom: 20px;
+    }
+
+    a {
+      color: lightskyblue;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    table, th, td {
+      border: 1px solid lightgray;
+    }
+
+    th, td {
+      padding: 15px;
+      text-align: center;
+    }
+
+    th {
+      background-color: black;
+      color: white;
+    }
+
+    footer {
+      background-color: black;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+    }
+
+    
+    @media (max-width: 768px) {
+      body {
+        margin-left: 0; 
+      }
+
+      nav {
+        position: relative;
+        width: 100%;
+        height: auto;
+        flex-direction: row;
+        justify-content: center;
+        padding: 10px 0;
+      }
+
+      nav ul {
+        flex-direction: row;
+        justify-content: center;
+        width: auto;
+      }
+
+      nav ul li {
+        margin: 0 15px;
+        width: auto;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <ul>
+      <li><a href="#inicio">Inicio</a></li>
+      <li><a href="#acerca">Acerca de</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </nav>
+
+  <header>
+    <h1>Bienvenidos a Mi Página</h1>
+  </header>
+
+  <section id="inicio">
+    <h2>Inicio</h2>
+    <p>
+      Estás a punto de vivir una experiencia única e inolvidable. Nuestra fiesta privada está pensada para aquellos que buscan un ambiente exclusivo, música en vivo, cócteles especiales y una noche llena de sorpresas.
+      Solo los más selectos tienen acceso a este evento especial, así que si estás leyendo esto, ¡estás invitado!
+    </p>
+    <p>
+      Prepárate para bailar, disfrutar y hacer nuevos recuerdos. La noche promete ser mágica, y no querrás perdértela.
+      ¡Nos vemos pronto en la pista de baile!
+    </p>
+  </section>
+
+  <section id="acerca">
+    <h2>Acerca de "LuxeVibe Events"</h2>
+    <p>
+      En LuxeVibe Events, nos especializamos en crear eventos únicos y exclusivos que quedan grabados en la memoria de todos los asistentes. Nuestra misión es ofrecer una experiencia de fiesta privada que combine la elegancia, la diversión y el estilo.
+    </p>
+    <p>
+      Con años de experiencia en la organización de eventos de alto nivel, nos encargamos de cada detalle para asegurar que nuestros invitados vivan una experiencia inolvidable. Desde el lugar hasta la decoración y el entretenimiento, todo está pensado para que disfrutes de una noche perfecta.
+    </p>
+    <p>
+      Nuestro compromiso es ofrecer exclusividad, seguridad y diversión, creando momentos especiales que solo aquellos que forman parte de nuestra comunidad podrán vivir.
+    </p>
+  </section>
+
+  <section id="contacto">
+    <h2>Contáctanos</h2>
+    <p>
+      Para más información sobre nuestros próximos eventos o cualquier consulta, puedes escribirnos a:
+    </p>
+    <ul>
+      <li>Email: 
+        <a href="mailto:asamanta@espe.edu.ec">asamanta@espe.edu.ec</a>, 
+        <a href="mailto:sebastiantip7@gmail.com">sebastiantip7@gmail.com</a>
+      </li>
+      <li>Teléfono: <a href="tel:+15551234567">+1 (555) 123-4567</a></li>
+      <li>Instagram: <a href="https://instagram.com/luxevibe.events" target="_blank">@luxevibe.events</a></li>
+      <li>Facebook: <a href="https://facebook.com/LuxeVibeEvents" target="_blank">LuxeVibe Events</a></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Lo que ofrecemos</h2>
+    <table>
+      <tr>
+        <th>Bebidas</th>
+        <th>Actividades</th>
+        <th>Música</th>
+      </tr>
+      <tr>
+        <td>Cócteles</td>
+        <td>DJ en vivo</td>
+        <td>Reggaeton, Salsa y más</td>
+      </tr>
+      <tr>
+        <td>Barra libre</td>
+        <td>No cover hasta 12:00 am</td>
+        <td>Artistas en vivo</td>
+      </tr>
+      <tr>
+        <td>Opciones sin alcohol</td>
+        <td>Juegos interactivos</td>
+        <td>Playlists personalizadas</td>
+      </tr>
+    </table>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 LuxeVibe Events. Todos los derechos reservados.</p>
+  </footer>
+
+</body>
+</html>
