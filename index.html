@@ -4,116 +4,213 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FiestaMania Ecuador - Los Mejores Eventos</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'poppins': ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        'primary': '#0f0c29',
+                        'secondary': '#302b63',
+                        'accent': '#24243e',
+                        'gold': '#FFD100',
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+        }
+        
+        .nav-link-hover::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 3px;
+            background-color: #FFD100;
+            border-radius: 9999px;
+            transition: width 0.3s;
+        }
+        
+        .nav-link-hover:hover::after {
+            width: 100%;
+        }
+        
+        .card-hover {
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+        }
+        
+        .card-image-hover {
+            transition: transform 0.3s;
+        }
+        
+        .card-hover:hover .card-image-hover {
+            transform: scale(1.1);
+        }
+    </style>
 </head>
-<body class="font-poppins" style="background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);">
+<body class="font-poppins">
     <!-- Header Mejorado -->
-    <header class="fixed-top shadow" style="background: rgba(15, 12, 41, 0.95); backdrop-filter: blur(10px);">
-        <nav class="navbar navbar-expand-lg navbar-dark py-3">
-            <div class="container">
-                <a class="navbar-brand fs-2 fw-bold" href="#" style="color: #FFD100; text-shadow: 0 0 10px rgba(255, 209, 0, 0.5);">
-                    <i class="fas fa-party-horn me-2"></i>FiestaMania <span class="text-white">EC</span>
+    <header class="fixed top-0 left-0 w-full z-50 shadow-lg" style="background: rgba(15, 12, 41, 0.95); backdrop-filter: blur(10px);">
+        <nav class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <a class="text-2xl font-bold flex items-center" href="#" style="color: #FFD100; text-shadow: 0 0 10px rgba(255, 209, 0, 0.5);">
+                    <i class="fas fa-party-horn mr-2"></i>FiestaMania <span class="text-white">EC</span>
                 </a>
-                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                    <span class="navbar-toggler-icon"></span>
+                
+                <!-- Mobile menu button -->
+                <button class="md:hidden text-white border-0 focus:outline-none" id="mobile-menu-button">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item mx-1">
-                            <a class="nav-link active fw-semibold position-relative" href="#inicio">
-                                <i class="fas fa-home me-1"></i>Inicio
-                                <span class="position-absolute bottom-0 start-50 translate-middle-x bg-warning rounded" style="height: 3px; width: 0; transition: width 0.3s;"></span>
+                
+                <!-- Desktop menu -->
+                <div class="hidden md:flex items-center space-x-1">
+                    <ul class="flex space-x-4">
+                        <li class="relative">
+                            <a class="nav-link-hover text-white font-semibold py-2 px-3 flex items-center relative" href="#inicio">
+                                <i class="fas fa-home mr-1"></i>Inicio
                             </a>
                         </li>
-                        <li class="nav-item mx-1">
-                            <a class="nav-link fw-semibold position-relative" href="#eventos">
-                                <i class="fas fa-calendar-star me-1"></i>Eventos
-                                <span class="position-absolute bottom-0 start-50 translate-middle-x bg-warning rounded" style="height: 3px; width: 0; transition: width 0.3s;"></span>
+                        <li class="relative">
+                            <a class="nav-link-hover text-white font-semibold py-2 px-3 flex items-center relative" href="#eventos">
+                                <i class="fas fa-calendar-star mr-1"></i>Eventos
                             </a>
                         </li>
-                        <li class="nav-item mx-1">
-                            <a class="nav-link fw-semibold position-relative" href="#categorias">
-                                <i class="fas fa-tags me-1"></i>Categorías
-                                <span class="position-absolute bottom-0 start-50 translate-middle-x bg-warning rounded" style="height: 3px; width: 0; transition: width 0.3s;"></span>
+                        <li class="relative">
+                            <a class="nav-link-hover text-white font-semibold py-2 px-3 flex items-center relative" href="#categorias">
+                                <i class="fas fa-tags mr-1"></i>Categorías
                             </a>
                         </li>
-                        <li class="nav-item mx-1">
-                            <a class="nav-link fw-semibold position-relative" href="#testimonios">
-                                <i class="fas fa-comment-dots me-1"></i>Testimonios
-                                <span class="position-absolute bottom-0 start-50 translate-middle-x bg-warning rounded" style="height: 3px; width: 0; transition: width 0.3s;"></span>
+                        <li class="relative">
+                            <a class="nav-link-hover text-white font-semibold py-2 px-3 flex items-center relative" href="#testimonios">
+                                <i class="fas fa-comment-dots mr-1"></i>Testimonios
                             </a>
                         </li>
-                        <li class="nav-item mx-1">
-                            <a class="nav-link fw-semibold position-relative" href="#contacto">
-                                <i class="fas fa-headset me-1"></i>Contacto
-                                <span class="position-absolute bottom-0 start-50 translate-middle-x bg-warning rounded" style="height: 3px; width: 0; transition: width 0.3s;"></span>
+                        <li class="relative">
+                            <a class="nav-link-hover text-white font-semibold py-2 px-3 flex items-center relative" href="#contacto">
+                                <i class="fas fa-headset mr-1"></i>Contacto
                             </a>
                         </li>
                     </ul>
-                    <div class="ms-3">
-                        <button class="btn btn-warning btn-sm fw-bold px-3">
-                            <i class="fas fa-ticket-alt me-1"></i>Comprar
+                    <div class="ml-3">
+                        <button class="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-2 px-4 rounded text-sm">
+                            <i class="fas fa-ticket-alt mr-1"></i>Comprar
                         </button>
                     </div>
+                </div>
+            </div>
+            
+            <!-- Mobile menu -->
+            <div class="md:hidden hidden mt-4" id="mobile-menu">
+                <ul class="space-y-2">
+                    <li>
+                        <a class="block text-white font-semibold py-2 px-3" href="#inicio">
+                            <i class="fas fa-home mr-1"></i>Inicio
+                        </a>
+                    </li>
+                    <li>
+                        <a class="block text-white font-semibold py-2 px-3" href="#eventos">
+                            <i class="fas fa-calendar-star mr-1"></i>Eventos
+                        </a>
+                    </li>
+                    <li>
+                        <a class="block text-white font-semibold py-2 px-3" href="#categorias">
+                            <i class="fas fa-tags mr-1"></i>Categorías
+                        </a>
+                    </li>
+                    <li>
+                        <a class="block text-white font-semibold py-2 px-3" href="#testimonios">
+                            <i class="fas fa-comment-dots mr-1"></i>Testimonios
+                        </a>
+                    </li>
+                    <li>
+                        <a class="block text-white font-semibold py-2 px-3" href="#contacto">
+                            <i class="fas fa-headset mr-1"></i>Contacto
+                        </a>
+                    </li>
+                </ul>
+                <div class="mt-4">
+                    <button class="w-full bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-2 px-4 rounded text-sm">
+                        <i class="fas fa-ticket-alt mr-1"></i>Comprar
+                    </button>
                 </div>
             </div>
         </nav>
     </header>
 
     <!-- Hero Section con Video -->
-    <section id="inicio" class="position-relative d-flex align-items-center" style="min-height: 100vh; padding-top: 80px;">
-        <div class="position-absolute top-0 start-0 w-100 h-100 overflow-hidden">
+    <section id="inicio" class="relative flex items-center min-h-screen pt-20">
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden">
             <iframe width="100%" height="100%" src="https://www.youtube.com/embed/REyv4cblksI?autoplay=1&mute=1&loop=1&playlist=REyv4cblksI&controls=0&showinfo=0&rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-            <div class="position-absolute top-0 start-0 w-100 h-100" style="background: linear-gradient(135deg, rgba(15,12,41,0.8) 0%, rgba(255,209,0,0.2) 100%);"></div>
+            <div class="absolute top-0 left-0 w-full h-full" style="background: linear-gradient(135deg, rgba(15,12,41,0.8) 0%, rgba(255,209,0,0.2) 100%);"></div>
         </div>
-        <div class="container position-relative text-white text-center">
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
+        <div class="container mx-auto px-4 relative text-white text-center">
+            <div class="flex justify-center">
+                <div class="w-full lg:w-2/3">
                     <div class="mb-4">
-                        <span class="badge bg-warning text-dark fs-6 px-3 py-2 mb-3">
-                            <i class="fas fa-fire me-1"></i>Eventos Épicos en Todo Ecuador
+                        <span class="inline-block bg-yellow-500 text-black text-lg px-3 py-2 mb-3 rounded-full">
+                            <i class="fas fa-fire mr-1"></i>Eventos Épicos en Todo Ecuador
                         </span>
                     </div>
-                    <h1 class="display-3 fw-bold mb-4" style="text-shadow: 2px 2px 8px rgba(0,0,0,0.5);">
-                        Vive la <span class="text-warning">Experiencia</span> de la Fiesta Perfecta
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4" style="text-shadow: 2px 2px 8px rgba(0,0,0,0.5);">
+                        Vive la <span class="text-yellow-500">Experiencia</span> de la Fiesta Perfecta
                     </h1>
-                    <p class="lead mb-4 fs-5">Descubre los eventos más exclusivos de Ecuador, con la mejor música, ambiente y gente. Reserva tu entrada ahora y prepárate para una noche inolvidable.</p>
-                    <div class="d-flex flex-column flex-md-row justify-content-center gap-3">
-                        <a href="#eventos" class="btn btn-warning btn-lg px-4 py-3 fw-bold fs-5">
-                            <i class="fas fa-rocket me-2"></i>Explorar Eventos
+                    <p class="text-lg md:text-xl mb-4">Descubre los eventos más exclusivos de Ecuador, con la mejor música, ambiente y gente. Reserva tu entrada ahora y prepárate para una noche inolvidable.</p>
+                    <div class="flex flex-col md:flex-row justify-center gap-3">
+                        <a href="#eventos" class="bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-4 py-3 rounded-lg text-lg">
+                            <i class="fas fa-rocket mr-2"></i>Explorar Eventos
                         </a>
-                        <a href="#contacto" class="btn btn-outline-light btn-lg px-4 py-3 fw-bold fs-5">
-                            <i class="fas fa-crown me-2"></i>Evento VIP
+                        <a href="#contacto" class="border-2 border-white hover:bg-white hover:text-black text-white font-bold px-4 py-3 rounded-lg text-lg transition-colors">
+                            <i class="fas fa-crown mr-2"></i>Evento VIP
                         </a>
                     </div>
                     <div class="mt-5 pt-4">
-                        <div class="row text-center">
-                            <div class="col-md-3 col-6 mb-3">
-                                <div class="border border-warning border-2 rounded-circle d-inline-flex align-items-center justify-content-center mb-2" style="width: 80px; height: 80px;">
-                                    <i class="fas fa-music fa-2x text-warning"></i>
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                            <div class="mb-3">
+                                <div class="border-2 border-yellow-500 rounded-full inline-flex items-center justify-center mb-2 w-20 h-20">
+                                    <i class="fas fa-music text-2xl text-yellow-500"></i>
                                 </div>
                                 <h5 class="text-white">Música En Vivo</h5>
                             </div>
-                            <div class="col-md-3 col-6 mb-3">
-                                <div class="border border-warning border-2 rounded-circle d-inline-flex align-items-center justify-content-center mb-2" style="width: 80px; height: 80px;">
-                                    <i class="fas fa-cocktail fa-2x text-warning"></i>
+                            <div class="mb-3">
+                                <div class="border-2 border-yellow-500 rounded-full inline-flex items-center justify-center mb-2 w-20 h-20">
+                                    <i class="fas fa-cocktail text-2xl text-yellow-500"></i>
                                 </div>
                                 <h5 class="text-white">Bares Premium</h5>
                             </div>
-                            <div class="col-md-3 col-6 mb-3">
-                                <div class="border border-warning border-2 rounded-circle d-inline-flex align-items-center justify-content-center mb-2" style="width: 80px; height: 80px;">
-                                    <i class="fas fa-dragon fa-2x text-warning"></i>
+                            <div class="mb-3">
+                                <div class="border-2 border-yellow-500 rounded-full inline-flex items-center justify-center mb-2 w-20 h-20">
+                                    <i class="fas fa-dragon text-2xl text-yellow-500"></i>
                                 </div>
                                 <h5 class="text-white">Temáticas Únicas</h5>
                             </div>
-                            <div class="col-md-3 col-6 mb-3">
-                                <div class="border border-warning border-2 rounded-circle d-inline-flex align-items-center justify-content-center mb-2" style="width: 80px; height: 80px;">
-                                    <i class="fas fa-shield-alt fa-2x text-warning"></i>
+                            <div class="mb-3">
+                                <div class="border-2 border-yellow-500 rounded-full inline-flex items-center justify-center mb-2 w-20 h-20">
+                                    <i class="fas fa-shield-alt text-2xl text-yellow-500"></i>
                                 </div>
                                 <h5 class="text-white">Seguridad Total</h5>
                             </div>
@@ -125,192 +222,180 @@
     </section>
 
     <!-- Eventos Destacados -->
-    <section id="eventos" class="py-5">
-        <div class="container">
-            <div class="text-center mb-5">
-                <span class="badge bg-warning text-dark fs-6 px-3 py-2 mb-3">
-                    <i class="fas fa-star me-1"></i>Próximos Eventos
+    <section id="eventos" class="py-12">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-8">
+                <span class="inline-block bg-yellow-500 text-black text-lg px-3 py-2 mb-3 rounded-full">
+                    <i class="fas fa-star mr-1"></i>Próximos Eventos
                 </span>
-                <h2 class="display-4 fw-bold text-white mb-3">Eventos <span class="text-warning">Destacados</span></h2>
-                <p class="lead text-light">No te pierdas las mejores fiestas de Ecuador</p>
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-3">Eventos <span class="text-yellow-500">Destacados</span></h2>
+                <p class="text-lg text-gray-300">No te pierdas las mejores fiestas de Ecuador</p>
             </div>
-            <div class="row g-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <!-- Evento 1 - Quito -->
-                <div class="col-md-4">
-                    <div class="card shadow h-100 border-0 overflow-hidden bg-dark text-white" style="transform: translateY(0); transition: transform 0.3s;">
-                        <div class="card-img-top position-relative" style="height: 250px; overflow: hidden;">
-                            <img src="https://www.nightlife-cityguide.com/wp-content/uploads/2025/02/Vita-notturna-Quito-Salsoteca-Lavoe.jpg" class="w-100 h-100" style="object-fit: cover; transition: transform 0.3s;" alt="Fiesta en Quito">
-                            <div class="position-absolute top-0 end-0 bg-warning text-dark px-3 py-2 m-2 rounded-pill fw-bold">
-                                <i class="fas fa-map-marker-alt me-1"></i> Quito
-                            </div>
-                            <div class="position-absolute bottom-0 start-0 w-100 p-3 text-white" style="background: linear-gradient(transparent, rgba(0,0,0,0.8));">
-                                <span class="badge bg-danger fs-6"><i class="fas fa-fire me-1"></i>Trending</span>
-                            </div>
+                <div class="card-hover bg-gray-900 text-white rounded-lg overflow-hidden shadow-lg h-full">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://www.nightlife-cityguide.com/wp-content/uploads/2025/02/Vita-notturna-Quito-Salsoteca-Lavoe.jpg" class="w-full h-full object-cover card-image-hover" alt="Fiesta en Quito">
+                        <div class="absolute top-0 right-0 bg-yellow-500 text-black px-3 py-2 m-2 rounded-full font-bold">
+                            <i class="fas fa-map-marker-alt mr-1"></i> Quito
                         </div>
-                        <div class="card-body p-4">
-                            <div class="d-flex align-items-center mb-2">
-                                <i class="far fa-calendar-alt text-warning me-2 fs-5"></i>
-                                <span class="fw-semibold">15 Diciembre, 2023</span>
-                            </div>
-                            <h3 class="card-title h4 fw-bold">Salsoteca Lavoe Night</h3>
-                            <div class="d-flex align-items-center mb-3">
-                                <i class="fas fa-map-marker-alt text-warning me-2"></i>
-                                <span>La Mariscal, Quito</span>
-                            </div>
-                            <p class="card-text opacity-75">Una noche llena de ritmo y sabor en la mejor salsoteca de Quito. DJs en vivo y clases de baile incluidas.</p>
-                            <div class="mt-4 pt-2">
-                                <a href="#" class="btn btn-warning w-100 fw-bold py-2">
-                                    <i class="fas fa-ticket-alt me-2"></i>Comprar Entradas
-                                </a>
-                            </div>
+                        <div class="absolute bottom-0 left-0 w-full p-3 text-white" style="background: linear-gradient(transparent, rgba(0,0,0,0.8));">
+                            <span class="inline-block bg-red-600 text-white rounded px-2 py-1 text-sm"><i class="fas fa-fire mr-1"></i>Trending</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-2">
+                            <i class="far fa-calendar-alt text-yellow-500 mr-2 text-lg"></i>
+                            <span class="font-semibold">15 Diciembre, 2023</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Salsoteca Lavoe Night</h3>
+                        <div class="flex items-center mb-3">
+                            <i class="fas fa-map-marker-alt text-yellow-500 mr-2"></i>
+                            <span>La Mariscal, Quito</span>
+                        </div>
+                        <p class="opacity-75 mb-4">Una noche llena de ritmo y sabor en la mejor salsoteca de Quito. DJs en vivo y clases de baile incluidas.</p>
+                        <div class="pt-2">
+                            <a href="#" class="block w-full bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-2 rounded text-center">
+                                <i class="fas fa-ticket-alt mr-2"></i>Comprar Entradas
+                            </a>
                         </div>
                     </div>
                 </div>
 
                 <!-- Evento 2 - Guayaquil -->
-                <div class="col-md-4">
-                    <div class="card shadow h-100 border-0 overflow-hidden bg-dark text-white" style="transform: translateY(0); transition: transform 0.3s;">
-                        <div class="card-img-top position-relative" style="height: 250px; overflow: hidden;">
-                            <img src="https://th.bing.com/th/id/R.f560202da2b18ca96063dc758f96c859?rik=ZcuBEZPHMnY9Uw&pid=ImgRaw&r=0" class="w-100 h-100" style="object-fit: cover; transition: transform 0.3s;" alt="Fiesta en Guayaquil">
-                            <div class="position-absolute top-0 end-0 bg-warning text-dark px-3 py-2 m-2 rounded-pill fw-bold">
-                                <i class="fas fa-map-marker-alt me-1"></i> Guayaquil
-                            </div>
+                <div class="card-hover bg-gray-900 text-white rounded-lg overflow-hidden shadow-lg h-full">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://th.bing.com/th/id/R.f560202da2b18ca96063dc758f96c859?rik=ZcuBEZPHMnY9Uw&pid=ImgRaw&r=0" class="w-full h-full object-cover card-image-hover" alt="Fiesta en Guayaquil">
+                        <div class="absolute top-0 right-0 bg-yellow-500 text-black px-3 py-2 m-2 rounded-full font-bold">
+                            <i class="fas fa-map-marker-alt mr-1"></i> Guayaquil
                         </div>
-                        <div class="card-body p-4">
-                            <div class="d-flex align-items-center mb-2">
-                                <i class="far fa-calendar-alt text-warning me-2 fs-5"></i>
-                                <span class="fw-semibold">22 Diciembre, 2023</span>
-                            </div>
-                            <h3 class="card-title h4 fw-bold">Malecón Sunset Party</h3>
-                            <div class="d-flex align-items-center mb-3">
-                                <i class="fas fa-map-marker-alt text-warning me-2"></i>
-                                <span>Malecón 2000, Guayaquil</span>
-                            </div>
-                            <p class="card-text opacity-75">Disfruta del atardecer en el río Guayas con música tropical, cócteles y ambiente playero.</p>
-                            <div class="mt-4 pt-2">
-                                <a href="#" class="btn btn-warning w-100 fw-bold py-2">
-                                    <i class="fas fa-ticket-alt me-2"></i>Comprar Entradas
-                                </a>
-                            </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-2">
+                            <i class="far fa-calendar-alt text-yellow-500 mr-2 text-lg"></i>
+                            <span class="font-semibold">22 Diciembre, 2023</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Malecón Sunset Party</h3>
+                        <div class="flex items-center mb-3">
+                            <i class="fas fa-map-marker-alt text-yellow-500 mr-2"></i>
+                            <span>Malecón 2000, Guayaquil</span>
+                        </div>
+                        <p class="opacity-75 mb-4">Disfruta del atardecer en el río Guayas con música tropical, cócteles y ambiente playero.</p>
+                        <div class="pt-2">
+                            <a href="#" class="block w-full bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-2 rounded text-center">
+                                <i class="fas fa-ticket-alt mr-2"></i>Comprar Entradas
+                            </a>
                         </div>
                     </div>
                 </div>
 
                 <!-- Evento 3 - Cuenca -->
-                <div class="col-md-4">
-                    <div class="card shadow h-100 border-0 overflow-hidden bg-dark text-white" style="transform: translateY(0); transition: transform 0.3s;">
-                        <div class="card-img-top position-relative" style="height: 250px; overflow: hidden;">
-                            <img src="https://tse4.mm.bing.net/th/id/OIP.CmYVu2bKikTT5XsOMDfWeAHaEK?rs=1&pid=ImgDetMain&o=7&rm=3" class="w-100 h-100" style="object-fit: cover; transition: transform 0.3s;" alt="Fiesta en Cuenca">
-                            <div class="position-absolute top-0 end-0 bg-warning text-dark px-3 py-2 m-2 rounded-pill fw-bold">
-                                <i class="fas fa-map-marker-alt me-1"></i> Cuenca
-                            </div>
-                            <div class="position-absolute bottom-0 start-0 w-100 p-3 text-white" style="background: linear-gradient(transparent, rgba(0,0,0,0.8));">
-                                <span class="badge bg-info fs-6"><i class="fas fa-gem me-1"></i>Premium</span>
-                            </div>
+                <div class="card-hover bg-gray-900 text-white rounded-lg overflow-hidden shadow-lg h-full">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://tse4.mm.bing.net/th/id/OIP.CmYVu2bKikTT5XsOMDfWeAHaEK?rs=1&pid=ImgDetMain&o=7&rm=3" class="w-full h-full object-cover card-image-hover" alt="Fiesta en Cuenca">
+                        <div class="absolute top-0 right-0 bg-yellow-500 text-black px-3 py-2 m-2 rounded-full font-bold">
+                            <i class="fas fa-map-marker-alt mr-1"></i> Cuenca
                         </div>
-                        <div class="card-body p-4">
-                            <div class="d-flex align-items-center mb-2">
-                                <i class="far fa-calendar-alt text-warning me-2 fs-5"></i>
-                                <span class="fw-semibold">29 Diciembre, 2023</span>
-                            </div>
-                            <h3 class="card-title h4 fw-bold">Fiesta Patrimonial</h3>
-                            <div class="d-flex align-items-center mb-3">
-                                <i class="fas fa-map-marker-alt text-warning me-2"></i>
-                                <span>Centro Histórico, Cuenca</span>
-                            </div>
-                            <p class="card-text opacity-75">Celebra en la ciudad patrimonio con música andina fusión y ambiente colonial único.</p>
-                            <div class="mt-4 pt-2">
-                                <a href="#" class="btn btn-warning w-100 fw-bold py-2">
-                                    <i class="fas fa-ticket-alt me-2"></i>Comprar Entradas
-                                </a>
-                            </div>
+                        <div class="absolute bottom-0 left-0 w-full p-3 text-white" style="background: linear-gradient(transparent, rgba(0,0,0,0.8));">
+                            <span class="inline-block bg-blue-500 text-white rounded px-2 py-1 text-sm"><i class="fas fa-gem mr-1"></i>Premium</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-2">
+                            <i class="far fa-calendar-alt text-yellow-500 mr-2 text-lg"></i>
+                            <span class="font-semibold">29 Diciembre, 2023</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Fiesta Patrimonial</h3>
+                        <div class="flex items-center mb-3">
+                            <i class="fas fa-map-marker-alt text-yellow-500 mr-2"></i>
+                            <span>Centro Histórico, Cuenca</span>
+                        </div>
+                        <p class="opacity-75 mb-4">Celebra en la ciudad patrimonio con música andina fusión y ambiente colonial único.</p>
+                        <div class="pt-2">
+                            <a href="#" class="block w-full bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-2 rounded text-center">
+                                <i class="fas fa-ticket-alt mr-2"></i>Comprar Entradas
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
             
             <!-- Más Eventos Button -->
-            <div class="text-center mt-5">
-                <a href="#" class="btn btn-outline-warning btn-lg px-5 py-3 fw-bold">
-                    <i class="fas fa-calendar-plus me-2"></i>Ver Todos los Eventos
+            <div class="text-center mt-8">
+                <a href="#" class="inline-block border-2 border-yellow-500 hover:bg-yellow-500 hover:text-black text-yellow-500 font-bold px-5 py-3 rounded-lg transition-colors">
+                    <i class="fas fa-calendar-plus mr-2"></i>Ver Todos los Eventos
                 </a>
             </div>
         </div>
     </section>
 
     <!-- Categorías Mejoradas con Imágenes -->
-    <section id="categorias" class="py-5">
-        <div class="container">
-            <div class="text-center mb-5">
-                <span class="badge bg-warning text-dark fs-6 px-3 py-2 mb-3">
-                    <i class="fas fa-tags me-1"></i>Variedad de Experiencias
+    <section id="categorias" class="py-12">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-8">
+                <span class="inline-block bg-yellow-500 text-black text-lg px-3 py-2 mb-3 rounded-full">
+                    <i class="fas fa-tags mr-1"></i>Variedad de Experiencias
                 </span>
-                <h2 class="display-4 fw-bold text-white mb-3">Nuestras <span class="text-warning">Experiencias</span></h2>
-                <p class="lead text-light">Elige el tipo de fiesta que más te guste</p>
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-3">Nuestras <span class="text-yellow-500">Experiencias</span></h2>
+                <p class="text-lg text-gray-300">Elige el tipo de fiesta que más te guste</p>
             </div>
-            <div class="row g-4">
-                <div class="col-md-6 col-lg-4">
-                    <div class="card text-center h-100 border-0 shadow-lg overflow-hidden bg-dark text-white" style="transform: translateY(0); transition: transform 0.3s;">
-                        <div class="card-img-top position-relative" style="height: 200px; overflow: hidden;">
-                            <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="w-100 h-100" style="object-fit: cover; transition: transform 0.3s;" alt="Ritmos Ecuatorianos">
-                            <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center">
-                                <div class="bg-warning rounded-circle d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
-                                    <i class="fas fa-music fa-2x text-dark"></i>
-                                </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="card-hover bg-gray-900 text-white rounded-lg overflow-hidden shadow-lg h-full text-center">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover card-image-hover" alt="Ritmos Ecuatorianos">
+                        <div class="absolute top-0 left-0 w-full h-full flex items-center justify-center">
+                            <div class="bg-yellow-500 rounded-full flex items-center justify-center w-20 h-20">
+                                <i class="fas fa-music text-2xl text-black"></i>
                             </div>
                         </div>
-                        <div class="card-body p-4">
-                            <h3 class="h4 fw-bold mb-3">Ritmos Ecuatorianos</h3>
-                            <p class="card-text opacity-75 mb-4">Disfruta de los mejores ritmos tradicionales y fusión ecuatoriana con artistas nacionales.</p>
-                            <div class="mt-3">
-                                <span class="badge bg-warning text-dark me-1 mb-1">Pasillo</span>
-                                <span class="badge bg-warning text-dark me-1 mb-1">Sanjuanito</span>
-                                <span class="badge bg-warning text-dark mb-1">Bomba</span>
-                            </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3">Ritmos Ecuatorianos</h3>
+                        <p class="opacity-75 mb-4">Disfruta de los mejores ritmos tradicionales y fusión ecuatoriana con artistas nacionales.</p>
+                        <div class="mt-3">
+                            <span class="inline-block bg-yellow-500 text-black rounded px-2 py-1 text-sm mr-1 mb-1">Pasillo</span>
+                            <span class="inline-block bg-yellow-500 text-black rounded px-2 py-1 text-sm mr-1 mb-1">Sanjuanito</span>
+                            <span class="inline-block bg-yellow-500 text-black rounded px-2 py-1 text-sm mb-1">Bomba</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-md-6 col-lg-4">
-                    <div class="card text-center h-100 border-0 shadow-lg overflow-hidden bg-dark text-white" style="transform: translateY(0); transition: transform 0.3s;">
-                        <div class="card-img-top position-relative" style="height: 200px; overflow: hidden;">
-                            <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="w-100 h-100" style="object-fit: cover; transition: transform 0.3s;" alt="Gastronomía Premium">
-                            <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center">
-                                <div class="bg-danger rounded-circle d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
-                                    <i class="fas fa-utensils fa-2x text-white"></i>
-                                </div>
+                <div class="card-hover bg-gray-900 text-white rounded-lg overflow-hidden shadow-lg h-full text-center">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover card-image-hover" alt="Gastronomía Premium">
+                        <div class="absolute top-0 left-0 w-full h-full flex items-center justify-center">
+                            <div class="bg-red-600 rounded-full flex items-center justify-center w-20 h-20">
+                                <i class="fas fa-utensils text-2xl text-white"></i>
                             </div>
                         </div>
-                        <div class="card-body p-4">
-                            <h3 class="h4 fw-bold mb-3">Gastronomía Premium</h3>
-                            <p class="card-text opacity-75 mb-4">Saborea la mejor comida ecuatoriana en eventos exclusivos con chefs reconocidos.</p>
-                            <div class="mt-3">
-                                <span class="badge bg-danger me-1 mb-1">Ceviche</span>
-                                <span class="badge bg-danger me-1 mb-1">Hornado</span>
-                                <span class="badge bg-danger mb-1">Encebollado</span>
-                            </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3">Gastronomía Premium</h3>
+                        <p class="opacity-75 mb-4">Saborea la mejor comida ecuatoriana en eventos exclusivos con chefs reconocidos.</p>
+                        <div class="mt-3">
+                            <span class="inline-block bg-red-600 text-white rounded px-2 py-1 text-sm mr-1 mb-1">Ceviche</span>
+                            <span class="inline-block bg-red-600 text-white rounded px-2 py-1 text-sm mr-1 mb-1">Hornado</span>
+                            <span class="inline-block bg-red-600 text-white rounded px-2 py-1 text-sm mb-1">Encebollado</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-md-6 col-lg-4">
-                    <div class="card text-center h-100 border-0 shadow-lg overflow-hidden bg-dark text-white" style="transform: translateY(0); transition: transform 0.3s;">
-                        <div class="card-img-top position-relative" style="height: 200px; overflow: hidden;">
-                            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="w-100 h-100" style="object-fit: cover; transition: transform 0.3s;" alt="Fiestas Playeras VIP">
-                            <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center">
-                                <div class="bg-primary rounded-circle d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
-                                    <i class="fas fa-umbrella-beach fa-2x text-white"></i>
-                                </div>
+                <div class="card-hover bg-gray-900 text-white rounded-lg overflow-hidden shadow-lg h-full text-center">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover card-image-hover" alt="Fiestas Playeras VIP">
+                        <div class="absolute top-0 left-0 w-full h-full flex items-center justify-center">
+                            <div class="bg-blue-500 rounded-full flex items-center justify-center w-20 h-20">
+                                <i class="fas fa-umbrella-beach text-2xl text-white"></i>
                             </div>
                         </div>
-                        <div class="card-body p-4">
-                            <h3 class="h4 fw-bold mb-3">Fiestas Playeras VIP</h3>
-                            <p class="card-text opacity-75 mb-4">Experiencias exclusivas en las playas más hermosas del Ecuador con servicio premium.</p>
-                            <div class="mt-3">
-                                <span class="badge bg-primary me-1 mb-1">Montañita</span>
-                                <span class="badge bg-primary me-1 mb-1">Salinas</span>
-                                <span class="badge bg-primary mb-1">Atacames</span>
-                            </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3">Fiestas Playeras VIP</h3>
+                        <p class="opacity-75 mb-4">Experiencias exclusivas en las playas más hermosas del Ecuador con servicio premium.</p>
+                        <div class="mt-3">
+                            <span class="inline-block bg-blue-500 text-white rounded px-2 py-1 text-sm mr-1 mb-1">Montañita</span>
+                            <span class="inline-block bg-blue-500 text-white rounded px-2 py-1 text-sm mr-1 mb-1">Salinas</span>
+                            <span class="inline-block bg-blue-500 text-white rounded px-2 py-1 text-sm mb-1">Atacames</span>
                         </div>
                     </div>
                 </div>
@@ -319,206 +404,190 @@
     </section>
 
     <!-- Testimonios Mejorados -->
-    <section id="testimonios" class="py-5">
-        <div class="container">
-            <div class="text-center mb-5">
-                <span class="badge bg-warning text-dark fs-6 px-3 py-2 mb-3">
-                    <i class="fas fa-comment-dots me-1"></i>Lo Que Dicen
+    <section id="testimonios" class="py-12">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-8">
+                <span class="inline-block bg-yellow-500 text-black text-lg px-3 py-2 mb-3 rounded-full">
+                    <i class="fas fa-comment-dots mr-1"></i>Lo Que Dicen
                 </span>
-                <h2 class="display-4 fw-bold text-white mb-3">Testimonios <span class="text-warning">Reales</span></h2>
-                <p class="lead text-light">Experiencias de nuestros clientes</p>
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-3">Testimonios <span class="text-yellow-500">Reales</span></h2>
+                <p class="text-lg text-gray-300">Experiencias de nuestros clientes</p>
             </div>
             
-            <div class="row g-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <!-- Testimonio 1 -->
-                <div class="col-md-4">
-                    <div class="card border-0 shadow h-100 bg-dark text-white" style="transform: translateY(0); transition: transform 0.3s;">
-                        <div class="card-body text-center p-4">
-                            <div class="mb-3">
-                                <i class="fas fa-quote-left fa-2x text-warning"></i>
+                <div class="card-hover bg-gray-900 text-white rounded-lg shadow-lg h-full">
+                    <div class="p-6 text-center">
+                        <div class="mb-3">
+                            <i class="fas fa-quote-left text-2xl text-yellow-500"></i>
+                        </div>
+                        <p class="italic mb-4 text-lg">"La mejor organización que he visto. Desde la compra de entradas hasta el final del evento, todo fue perfecto. ¡Volveré seguro!"</p>
+                        <div class="flex items-center justify-center">
+                            <img src="https://tse2.mm.bing.net/th/id/OIP.I92YwtsJM2VrZTcTvX9BVQHaJ3?rs=1&pid=ImgDetMain&o=7&rm=3" class="rounded-full mr-3 border-2 border-yellow-500 w-16 h-16 object-cover" alt="María González">
+                            <div class="text-left">
+                                <h5 class="font-bold">María González</h5>
+                                <small class="text-yellow-500">Quito, Ecuador</small>
                             </div>
-                            <p class="card-text fst-italic mb-4 fs-5">"La mejor organización que he visto. Desde la compra de entradas hasta el final del evento, todo fue perfecto. ¡Volveré seguro!"</p>
-                            <div class="d-flex align-items-center justify-content-center">
-                                <img src="https://tse2.mm.bing.net/th/id/OIP.I92YwtsJM2VrZTcTvX9BVQHaJ3?rs=1&pid=ImgDetMain&o=7&rm=3" class="rounded-circle me-3 border border-warning border-3" width="70" height="70" style="object-fit: cover;" alt="María González">
-                                <div class="text-start">
-                                    <h5 class="mb-0 fw-bold">María González</h5>
-                                    <small class="text-warning">Quito, Ecuador</small>
-                                </div>
-                            </div>
-                            <div class="mt-3 text-warning">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
+                        </div>
+                        <div class="mt-3 text-yellow-500">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
                         </div>
                     </div>
                 </div>
 
                 <!-- Testimonio 2 -->
-                <div class="col-md-4">
-                    <div class="card border-0 shadow h-100 bg-dark text-white" style="transform: translateY(0); transition: transform 0.3s;">
-                        <div class="card-body text-center p-4">
-                            <div class="mb-3">
-                                <i class="fas fa-quote-left fa-2x text-warning"></i>
+                <div class="card-hover bg-gray-900 text-white rounded-lg shadow-lg h-full">
+                    <div class="p-6 text-center">
+                        <div class="mb-3">
+                            <i class="fas fa-quote-left text-2xl text-yellow-500"></i>
+                        </div>
+                        <p class="italic mb-4 text-lg">"Increíble atención al detalle. La fiesta en la playa superó todas mis expectativas. Definitivamente recomiendo FiestaMania."</p>
+                        <div class="flex items-center justify-center">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" class="rounded-full mr-3 border-2 border-yellow-500 w-16 h-16 object-cover" alt="Carlos Rodríguez">
+                            <div class="text-left">
+                                <h5 class="font-bold">Carlos Rodríguez</h5>
+                                <small class="text-yellow-500">Guayaquil, Ecuador</small>
                             </div>
-                            <p class="card-text fst-italic mb-4 fs-5">"Increíble atención al detalle. La fiesta en la playa superó todas mis expectativas. Definitivamente recomiendo FiestaMania."</p>
-                            <div class="d-flex align-items-center justify-content-center">
-                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" class="rounded-circle me-3 border border-warning border-3" width="70" height="70" alt="Carlos Rodríguez">
-                                <div class="text-start">
-                                    <h5 class="mb-0 fw-bold">Carlos Rodríguez</h5>
-                                    <small class="text-warning">Guayaquil, Ecuador</small>
-                                </div>
-                            </div>
-                            <div class="mt-3 text-warning">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
-                            </div>
+                        </div>
+                        <div class="mt-3 text-yellow-500">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
                         </div>
                     </div>
                 </div>
 
                 <!-- Testimonio 3 -->
-                <div class="col-md-4">
-                    <div class="card border-0 shadow h-100 bg-dark text-white" style="transform: translateY(0); transition: transform 0.3s;">
-                        <div class="card-body text-center p-4">
-                            <div class="mb-3">
-                                <i class="fas fa-quote-left fa-2x text-warning"></i>
+                <div class="card-hover bg-gray-900 text-white rounded-lg shadow-lg h-full">
+                    <div class="p-6 text-center">
+                        <div class="mb-3">
+                            <i class="fas fa-quote-left text-2xl text-yellow-500"></i>
+                        </div>
+                        <p class="italic mb-4 text-lg">"La fiesta temática fue espectacular. Los detalles, la música y la ambientación crearon una experiencia inolvidable."</p>
+                        <div class="flex items-center justify-center">
+                            <img src="https://images.unsplash.com/photo-1534751516642-a1af1ef26a56?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" class="rounded-full mr-3 border-2 border-yellow-500 w-16 h-16 object-cover" alt="Laura Martínez">
+                            <div class="text-left">
+                                <h5 class="font-bold">Laura Martínez</h5>
+                                <small class="text-yellow-500">Cuenca, Ecuador</small>
                             </div>
-                            <p class="card-text fst-italic mb-4 fs-5">"La fiesta temática fue espectacular. Los detalles, la música y la ambientación crearon una experiencia inolvidable."</p>
-                            <div class="d-flex align-items-center justify-content-center">
-                                <img src="https://images.unsplash.com/photo-1534751516642-a1af1ef26a56?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" class="rounded-circle me-3 border border-warning border-3" width="70" height="70" alt="Laura Martínez">
-                                <div class="text-start">
-                                    <h5 class="mb-0 fw-bold">Laura Martínez</h5>
-                                    <small class="text-warning">Cuenca, Ecuador</small>
-                                </div>
-                            </div>
-                            <div class="mt-3 text-warning">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
+                        </div>
+                        <div class="mt-3 text-yellow-500">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- Estadísticas -->
-            <div class="row mt-5 pt-4">
-                <div class="col-md-3 col-6 text-center mb-4">
-                    <div class="bg-dark bg-opacity-50 p-4 rounded border border-warning border-2">
-                        <h2 class="display-4 fw-bold text-warning">500+</h2>
-                        <p class="fw-semibold text-white">Eventos Realizados</p>
-                    </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8 pt-4">
+                <div class="bg-gray-900 bg-opacity-50 p-6 rounded border-2 border-yellow-500 text-center">
+                    <h2 class="text-4xl font-bold text-yellow-500">500+</h2>
+                    <p class="font-semibold text-white">Eventos Realizados</p>
                 </div>
-                <div class="col-md-3 col-6 text-center mb-4">
-                    <div class="bg-dark bg-opacity-50 p-4 rounded border border-warning border-2">
-                        <h2 class="display-4 fw-bold text-warning">50K+</h2>
-                        <p class="fw-semibold text-white">Clientes Satisfechos</p>
-                    </div>
+                <div class="bg-gray-900 bg-opacity-50 p-6 rounded border-2 border-yellow-500 text-center">
+                    <h2 class="text-4xl font-bold text-yellow-500">50K+</h2>
+                    <p class="font-semibold text-white">Clientes Satisfechos</p>
                 </div>
-                <div class="col-md-3 col-6 text-center mb-4">
-                    <div class="bg-dark bg-opacity-50 p-4 rounded border border-warning border-2">
-                        <h2 class="display-4 fw-bold text-warning">15</h2>
-                        <p class="fw-semibold text-white">Ciudades del Ecuador</p>
-                    </div>
+                <div class="bg-gray-900 bg-opacity-50 p-6 rounded border-2 border-yellow-500 text-center">
+                    <h2 class="text-4xl font-bold text-yellow-500">15</h2>
+                    <p class="font-semibold text-white">Ciudades del Ecuador</p>
                 </div>
-                <div class="col-md-3 col-6 text-center mb-4">
-                    <div class="bg-dark bg-opacity-50 p-4 rounded border border-warning border-2">
-                        <h2 class="display-4 fw-bold text-warning">98%</h2>
-                        <p class="fw-semibold text-white">Rating de Satisfacción</p>
-                    </div>
+                <div class="bg-gray-900 bg-opacity-50 p-6 rounded border-2 border-yellow-500 text-center">
+                    <h2 class="text-4xl font-bold text-yellow-500">98%</h2>
+                    <p class="font-semibold text-white">Rating de Satisfacción</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Contacto Mejorado -->
-    <section id="contacto" class="py-5">
-        <div class="container">
-            <div class="text-center mb-5">
-                <span class="badge bg-warning text-dark fs-6 px-3 py-2 mb-3">
-                    <i class="fas fa-headset me-1"></i>Estamos Aquí Para Ti
+    <section id="contacto" class="py-12">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-8">
+                <span class="inline-block bg-yellow-500 text-black text-lg px-3 py-2 mb-3 rounded-full">
+                    <i class="fas fa-headset mr-1"></i>Estamos Aquí Para Ti
                 </span>
-                <h2 class="display-4 fw-bold text-white mb-3">Contáctanos <span class="text-warning">Ahora</span></h2>
-                <p class="lead text-light">¿Listo para la próxima fiesta épica?</p>
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-3">Contáctanos <span class="text-yellow-500">Ahora</span></h2>
+                <p class="text-lg text-gray-300">¿Listo para la próxima fiesta épica?</p>
             </div>
-            <div class="row">
-                <div class="col-lg-6 mb-4 mb-lg-0">
-                    <div class="bg-dark bg-opacity-50 p-4 rounded border border-warning border-2 h-100">
-                        <h3 class="h4 mb-4 text-warning fw-bold">
-                            <i class="fas fa-question-circle me-2"></i>¿Tienes alguna pregunta?
-                        </h3>
-                        <p class="mb-4 text-light fs-5">Estamos aquí para ayudarte. Contáctanos para cualquier consulta sobre eventos, reservas o colaboraciones.</p>
-                        
-                        <div class="d-flex align-items-center mb-3 p-3 bg-dark bg-opacity-75 rounded">
-                            <i class="fas fa-map-marker-alt text-warning me-3 fs-4"></i>
-                            <span class="text-light">Av. Amazonas N34-451, Quito, Ecuador</span>
-                        </div>
-                        
-                        <div class="d-flex align-items-center mb-3 p-3 bg-dark bg-opacity-75 rounded">
-                            <i class="fas fa-phone text-warning me-3 fs-4"></i>
-                            <span class="text-light">+593 2 234 5678</span>
-                        </div>
-                        
-                        <div class="d-flex align-items-center mb-4 p-3 bg-dark bg-opacity-75 rounded">
-                            <i class="fas fa-envelope text-warning me-3 fs-4"></i>
-                            <span class="text-light">info@fiestamania-ecuador.com</span>
-                        </div>
-                        
-                        <h4 class="h5 mb-3 text-warning fw-bold">
-                            <i class="fas fa-share-alt me-2"></i>Síguenos en Redes
-                        </h4>
-                        <div class="d-flex gap-3">
-                            <a href="#" class="btn btn-outline-warning rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
-                                <i class="fab fa-facebook-f fs-5"></i>
-                            </a>
-                            <a href="#" class="btn btn-outline-warning rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
-                                <i class="fab fa-instagram fs-5"></i>
-                            </a>
-                            <a href="#" class="btn btn-outline-warning rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
-                                <i class="fab fa-tiktok fs-5"></i>
-                            </a>
-                            <a href="#" class="btn btn-outline-warning rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
-                                <i class="fab fa-whatsapp fs-5"></i>
-                            </a>
-                        </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div class="bg-gray-900 bg-opacity-50 p-6 rounded border-2 border-yellow-500 h-full">
+                    <h3 class="text-xl mb-4 text-yellow-500 font-bold">
+                        <i class="fas fa-question-circle mr-2"></i>¿Tienes alguna pregunta?
+                    </h3>
+                    <p class="mb-4 text-gray-300 text-lg">Estamos aquí para ayudarte. Contáctanos para cualquier consulta sobre eventos, reservas o colaboraciones.</p>
+                    
+                    <div class="flex items-center mb-3 p-3 bg-gray-900 bg-opacity-75 rounded">
+                        <i class="fas fa-map-marker-alt text-yellow-500 mr-3 text-xl"></i>
+                        <span class="text-gray-300">Av. Amazonas N34-451, Quito, Ecuador</span>
+                    </div>
+                    
+                    <div class="flex items-center mb-3 p-3 bg-gray-900 bg-opacity-75 rounded">
+                        <i class="fas fa-phone text-yellow-500 mr-3 text-xl"></i>
+                        <span class="text-gray-300">+593 2 234 5678</span>
+                    </div>
+                    
+                    <div class="flex items-center mb-4 p-3 bg-gray-900 bg-opacity-75 rounded">
+                        <i class="fas fa-envelope text-yellow-500 mr-3 text-xl"></i>
+                        <span class="text-gray-300">info@fiestamania-ecuador.com</span>
+                    </div>
+                    
+                    <h4 class="text-lg mb-3 text-yellow-500 font-bold">
+                        <i class="fas fa-share-alt mr-2"></i>Síguenos en Redes
+                    </h4>
+                    <div class="flex gap-3">
+                        <a href="#" class="border-2 border-yellow-500 text-yellow-500 hover:bg-yellow-500 hover:text-black rounded-full flex items-center justify-center w-12 h-12 transition-colors">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="border-2 border-yellow-500 text-yellow-500 hover:bg-yellow-500 hover:text-black rounded-full flex items-center justify-center w-12 h-12 transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="border-2 border-yellow-500 text-yellow-500 hover:bg-yellow-500 hover:text-black rounded-full flex items-center justify-center w-12 h-12 transition-colors">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                        <a href="#" class="border-2 border-yellow-500 text-yellow-500 hover:bg-yellow-500 hover:text-black rounded-full flex items-center justify-center w-12 h-12 transition-colors">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
                     </div>
                 </div>
                 
-                <div class="col-lg-6">
-                    <form class="bg-dark bg-opacity-50 p-4 rounded border border-warning border-2 text-light">
-                        <h4 class="h5 mb-4 text-center text-warning fw-bold">
-                            <i class="fas fa-paper-plane me-2"></i>Solicita Información
+                <div>
+                    <form class="bg-gray-900 bg-opacity-50 p-6 rounded border-2 border-yellow-500 text-gray-300">
+                        <h4 class="text-lg mb-4 text-center text-yellow-500 font-bold">
+                            <i class="fas fa-paper-plane mr-2"></i>Solicita Información
                         </h4>
-                        <div class="row">
-                            <div class="col-md-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
                                 <div class="mb-3">
-                                    <label class="form-label fw-semibold">Nombre Completo</label>
-                                    <input type="text" class="form-control bg-dark text-light border-warning" placeholder="Tu nombre completo" required>
+                                    <label class="block font-semibold mb-1">Nombre Completo</label>
+                                    <input type="text" class="w-full bg-gray-900 text-gray-300 border border-yellow-500 rounded px-3 py-2" placeholder="Tu nombre completo" required>
                                 </div>
                                 
                                 <div class="mb-3">
-                                    <label class="form-label fw-semibold">Email</label>
-                                    <input type="email" class="form-control bg-dark text-light border-warning" placeholder="tu@email.com" required>
+                                    <label class="block font-semibold mb-1">Email</label>
+                                    <input type="email" class="w-full bg-gray-900 text-gray-300 border border-yellow-500 rounded px-3 py-2" placeholder="tu@email.com" required>
                                 </div>
                                 
                                 <div class="mb-3">
-                                    <label class="form-label fw-semibold">Teléfono</label>
-                                    <input type="tel" class="form-control bg-dark text-light border-warning" placeholder="+593 99 999 9999">
+                                    <label class="block font-semibold mb-1">Teléfono</label>
+                                    <input type="tel" class="w-full bg-gray-900 text-gray-300 border border-yellow-500 rounded px-3 py-2" placeholder="+593 99 999 9999">
                                 </div>
                             </div>
                             
-                            <div class="col-md-6">
+                            <div>
                                 <div class="mb-3">
-                                    <label class="form-label fw-semibold">Ciudad</label>
-                                    <select class="form-select bg-dark text-light border-warning">
+                                    <label class="block font-semibold mb-1">Ciudad</label>
+                                    <select class="w-full bg-gray-900 text-gray-300 border border-yellow-500 rounded px-3 py-2">
                                         <option selected>Selecciona tu ciudad</option>
                                         <option>Quito</option>
                                         <option>Guayaquil</option>
@@ -529,8 +598,8 @@
                                 </div>
                                 
                                 <div class="mb-3">
-                                    <label class="form-label fw-semibold">Tipo de Evento</label>
-                                    <select class="form-select bg-dark text-light border-warning">
+                                    <label class="block font-semibold mb-1">Tipo de Evento</label>
+                                    <select class="w-full bg-gray-900 text-gray-300 border border-yellow-500 rounded px-3 py-2">
                                         <option selected>Selecciona tipo de evento</option>
                                         <option>Fiesta de Cumpleaños</option>
                                         <option>Aniversario</option>
@@ -541,19 +610,19 @@
                                 </div>
                                 
                                 <div class="mb-3">
-                                    <label class="form-label fw-semibold">Fecha del Evento</label>
-                                    <input type="date" class="form-control bg-dark text-light border-warning">
+                                    <label class="block font-semibold mb-1">Fecha del Evento</label>
+                                    <input type="date" class="w-full bg-gray-900 text-gray-300 border border-yellow-500 rounded px-3 py-2">
                                 </div>
                             </div>
                         </div>
                         
                         <div class="mb-3">
-                            <label class="form-label fw-semibold">Mensaje</label>
-                            <textarea class="form-control bg-dark text-light border-warning" rows="4" placeholder="Cuéntanos sobre tu evento..."></textarea>
+                            <label class="block font-semibold mb-1">Mensaje</label>
+                            <textarea class="w-full bg-gray-900 text-gray-300 border border-yellow-500 rounded px-3 py-2" rows="4" placeholder="Cuéntanos sobre tu evento..."></textarea>
                         </div>
                         
-                        <button type="submit" class="btn btn-warning w-100 fw-bold mt-3 py-3 fs-5">
-                            <i class="fas fa-paper-plane me-2"></i>Enviar Solicitud
+                        <button type="submit" class="w-full bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 rounded text-lg mt-3">
+                            <i class="fas fa-paper-plane mr-2"></i>Enviar Solicitud
                         </button>
                     </form>
                 </div>
@@ -562,129 +631,111 @@
     </section>
 
     <!-- Footer con Mapa -->
-    <footer class="bg-dark text-white py-5 border-top border-warning border-3">
-        <div class="container">
-            <div class="row g-4">
-                <div class="col-lg-4 col-md-6">
-                    <h4 class="h5 mb-3 text-warning fw-bold">
-                        <i class="fas fa-party-horn me-2"></i>FiestaMania Ecuador
+    <footer class="bg-gray-900 text-white py-8 border-t-4 border-yellow-500">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div>
+                    <h4 class="text-lg mb-3 text-yellow-500 font-bold">
+                        <i class="fas fa-party-horn mr-2"></i>FiestaMania Ecuador
                     </h4>
-                    <p class="mb-3 text-light">Creando experiencias inolvidables desde 2015. Nos especializamos en organizar los eventos más exclusivos y divertidos en todo Ecuador.</p>
-                    <div class="d-flex gap-2">
-                        <a href="#" class="btn btn-outline-warning btn-sm rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                    <p class="mb-3 text-gray-300">Creando experiencias inolvidables desde 2015. Nos especializamos en organizar los eventos más exclusivos y divertidos en todo Ecuador.</p>
+                    <div class="flex gap-2">
+                        <a href="#" class="border-2 border-yellow-500 text-yellow-500 hover:bg-yellow-500 hover:text-black rounded-full flex items-center justify-center w-10 h-10 transition-colors">
                             <i class="fab fa-facebook-f"></i>
                         </a>
-                        <a href="#" class="btn btn-outline-warning btn-sm rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                        <a href="#" class="border-2 border-yellow-500 text-yellow-500 hover:bg-yellow-500 hover:text-black rounded-full flex items-center justify-center w-10 h-10 transition-colors">
                             <i class="fab fa-instagram"></i>
                         </a>
-                        <a href="#" class="btn btn-outline-warning btn-sm rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                        <a href="#" class="border-2 border-yellow-500 text-yellow-500 hover:bg-yellow-500 hover:text-black rounded-full flex items-center justify-center w-10 h-10 transition-colors">
                             <i class="fab fa-tiktok"></i>
                         </a>
                     </div>
                 </div>
                 
-                <div class="col-lg-4 col-md-6">
-                    <h4 class="h5 mb-3 text-warning fw-bold">
-                        <i class="fas fa-bolt me-2"></i>Enlaces Rápidos
+                <div>
+                    <h4 class="text-lg mb-3 text-yellow-500 font-bold">
+                        <i class="fas fa-bolt mr-2"></i>Enlaces Rápidos
                     </h4>
-                    <ul class="list-unstyled">
-                        <li class="mb-2">
-                            <a href="#inicio" class="text-light text-decoration-none d-flex align-items-center">
-                                <i class="fas fa-chevron-right me-2 text-warning"></i>Inicio
+                    <ul class="space-y-2">
+                        <li>
+                            <a href="#inicio" class="text-gray-300 hover:text-yellow-500 flex items-center transition-colors">
+                                <i class="fas fa-chevron-right mr-2 text-yellow-500"></i>Inicio
                             </a>
                         </li>
-                        <li class="mb-2">
-                            <a href="#eventos" class="text-light text-decoration-none d-flex align-items-center">
-                                <i class="fas fa-chevron-right me-2 text-warning"></i>Eventos
+                        <li>
+                            <a href="#eventos" class="text-gray-300 hover:text-yellow-500 flex items-center transition-colors">
+                                <i class="fas fa-chevron-right mr-2 text-yellow-500"></i>Eventos
                             </a>
                         </li>
-                        <li class="mb-2">
-                            <a href="#categorias" class="text-light text-decoration-none d-flex align-items-center">
-                                <i class="fas fa-chevron-right me-2 text-warning"></i>Categorías
+                        <li>
+                            <a href="#categorias" class="text-gray-300 hover:text-yellow-500 flex items-center transition-colors">
+                                <i class="fas fa-chevron-right mr-2 text-yellow-500"></i>Categorías
                             </a>
                         </li>
-                        <li class="mb-2">
-                            <a href="#testimonios" class="text-light text-decoration-none d-flex align-items-center">
-                                <i class="fas fa-chevron-right me-2 text-warning"></i>Testimonios
+                        <li>
+                            <a href="#testimonios" class="text-gray-300 hover:text-yellow-500 flex items-center transition-colors">
+                                <i class="fas fa-chevron-right mr-2 text-yellow-500"></i>Testimonios
                             </a>
                         </li>
-                        <li class="mb-2">
-                            <a href="#contacto" class="text-light text-decoration-none d-flex align-items-center">
-                                <i class="fas fa-chevron-right me-2 text-warning"></i>Contacto
+                        <li>
+                            <a href="#contacto" class="text-gray-300 hover:text-yellow-500 flex items-center transition-colors">
+                                <i class="fas fa-chevron-right mr-2 text-yellow-500"></i>Contacto
                             </a>
                         </li>
                     </ul>
                 </div>
                 
-                <div class="col-lg-4 col-md-12">
-                    <h4 class="h5 mb-3 text-warning fw-bold">
-                        <i class="fas fa-map-marked-alt me-2"></i>Ubicación
+                <div>
+                    <h4 class="text-lg mb-3 text-yellow-500 font-bold">
+                        <i class="fas fa-map-marked-alt mr-2"></i>Ubicación
                     </h4>
-                    <div class="bg-light rounded overflow-hidden border border-warning">
+                    <div class="bg-white rounded overflow-hidden border border-yellow-500">
                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d127927.23597993929!2d-78.58630235!3d-0.22056714999999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91d59a4002427c9f%3A0x44ac8e42602c7d4c!2sQuito%2C%20Ecuador!5e0!3m2!1ses!2sus!4v1699123456789!5m2!1ses!2sus" width="100%" height="150" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                     <div class="mt-3">
-                        <p class="mb-1 text-light">
-                            <i class="fas fa-map-marker-alt text-warning me-2"></i>Av. Amazonas N34-451, Quito
+                        <p class="mb-1 text-gray-300">
+                            <i class="fas fa-map-marker-alt text-yellow-500 mr-2"></i>Av. Amazonas N34-451, Quito
                         </p>
-                        <p class="mb-0 text-light">
-                            <i class="fas fa-clock text-warning me-2"></i>Lun - Vie: 9:00 AM - 6:00 PM
+                        <p class="mb-0 text-gray-300">
+                            <i class="fas fa-clock text-yellow-500 mr-2"></i>Lun - Vie: 9:00 AM - 6:00 PM
                         </p>
                     </div>
                 </div>
             </div>
             
-            <div class="text-center pt-4 mt-4 border-top border-warning">
-                <p class="mb-0 text-light">
-                    <i class="fas fa-copyright me-1"></i>2023 FiestaMania Ecuador. Todos los derechos reservados.
+            <div class="text-center pt-4 mt-4 border-t border-yellow-500">
+                <p class="text-gray-300">
+                    <i class="fas fa-copyright mr-1"></i>2023 FiestaMania Ecuador. Todos los derechos reservados.
                 </p>
             </div>
         </div>
     </footer>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-    
     <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
         // Efectos de hover para las tarjetas
         document.addEventListener('DOMContentLoaded', function() {
-            const cards = document.querySelectorAll('.card');
-            
-            cards.forEach(card => {
-                card.addEventListener('mouseenter', function() {
-                    this.style.transform = 'translateY(-10px)';
-                });
-                
-                card.addEventListener('mouseleave', function() {
-                    this.style.transform = 'translateY(0)';
-                });
-            });
-            
-            // Efecto hover para imágenes de tarjetas
-            const cardImages = document.querySelectorAll('.card-img-top img');
-            
-            cardImages.forEach(img => {
-                img.addEventListener('mouseenter', function() {
-                    this.style.transform = 'scale(1.1)';
-                });
-                
-                img.addEventListener('mouseleave', function() {
-                    this.style.transform = 'scale(1)';
-                });
-            });
-            
             // Efecto hover para enlaces de navegación
-            const navLinks = document.querySelectorAll('.nav-link');
+            const navLinks = document.querySelectorAll('.nav-link-hover');
             
             navLinks.forEach(link => {
                 link.addEventListener('mouseenter', function() {
-                    const underline = this.querySelector('span');
-                    underline.style.width = '100%';
+                    const underline = this.querySelector('::after');
+                    if (underline) {
+                        underline.style.width = '100%';
+                    }
                 });
                 
                 link.addEventListener('mouseleave', function() {
-                    const underline = this.querySelector('span');
-                    underline.style.width = '0';
+                    const underline = this.querySelector('::after');
+                    if (underline) {
+                        underline.style.width = '0';
+                    }
                 });
             });
         });
